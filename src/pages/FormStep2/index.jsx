@@ -22,7 +22,11 @@ function Step2() {
   }, [])
 
   const handleNextStep = () => {
+    if (state.name !== ""){
     navigate("/step3")
+  } else {
+    alert("Preencha os campos.")
+  }
   }
 
   const setLevel = () =>{
@@ -60,7 +64,7 @@ function Step2() {
          selected={state.level === 1}
          onClick={()=>{setLevel(1)}}
        />
-       <Link className="backButton">
+       <Link to="/" className="backButton">
        Voltar 
        </Link>
        <C.button onClick={handleNextStep}> Próximo 

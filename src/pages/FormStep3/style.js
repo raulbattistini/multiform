@@ -22,6 +22,8 @@ export const hr = styled.hr`
 
 export const label = styled.label`
   font-size: 13px;
+  display: block;
+  margin-bottom: 20px;
 `;
 
 export const input = styled.input`
@@ -50,6 +52,11 @@ export const button = styled.button`
   margin-top: 30px;
 `;
 
-export const FieldText = styled(TextField)`
-z-index: 3;
+export const Container = styled.div`
+.backButton{
+  font-size: 16px;
+  text-decoration: none;
+  padding: 20px 40px;
+  color: #B888D4;
+}
 `;
