@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import * as C from './style'
 import {useForm, FormActions} from '../../context/FormContext'
 import {Theme} from '../../components/Theme'
@@ -11,16 +11,26 @@ function Step2() {
   const { state, dispatch } = useForm()
 
   useEffect(() => {
+    if(state.name === ""){
+      navigate("/")
+    } else {
     dispatch({
       type: FormActions.setCurrentStep,
       payload: 2
     })
+  }
   }, [])
 
   const handleNextStep = () => {
     navigate("/step3")
   }
 
+  const setLevel = () =>{
+    dispatch({
+      type: FormActions.setLevel,
+      payload: level
+    })
+  }
   const handleNameChange = e => {
     dispatch({
       type: FormActions.setName,
@@ -32,21 +42,29 @@ function Step2() {
     <Theme>
     <C.Container>
        <C.p>Passo 2/3</C.p>
-       <C.h1>Vamos começar com o seu nome</C.h1>
-       <C.p>Preencha o campo abaixo com o seu nome completo.</C.p>
+       <C.h1>{state.name}, o que melhor descreve você hoje?</C.h1>
+       <C.p>Escolha a opção que melhor condiz com seu estado atual, profissionalmente.</C.p>
 
        <C.hr />
        <SelectOption 
          title="Sou iniciante"
          description="Comecei a programar a menos de 2 anos"
          icon=""
+         selected={state.level === 0}
+         onClick={()=>{setLevel(0)}}
        />
          <SelectOption 
          title="Sou programador"
          description="Programo há 2 anos ou mais"
          icon=""
-       /> 
-       <C.button onClick={handleNextStep}> Próximo </C.button>
+         selected={state.level === 1}
+         onClick={()=>{setLevel(1)}}
+       />
+       <Link className="backButton">
+       Voltar 
+       </Link>
+       <C.button onClick={handleNextStep}> Próximo 
+       </C.button>
     </C.Container>
     </Theme>
 
