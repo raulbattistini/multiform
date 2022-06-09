@@ -15,7 +15,7 @@ function Step1() {
       type: FormActions.setCurrentStep,
       payload: 1
     })
-  }, [])
+  }, [dispatch, navigate, state])
 
   const handleNextStep = () => {
     navigate("/step2")
@@ -40,8 +40,8 @@ function Step1() {
        <C.label htmlFor="fullName"> Seu nome completo 
        <C.input 
        type="text" 
-       autoFocus="true"
-       values={state.name}
+       autoFocus={true}
+       value={state.name}
        onChange={handleNameChange}  
        />
        </C.label>

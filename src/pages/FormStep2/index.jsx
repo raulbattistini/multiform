@@ -19,7 +19,7 @@ function Step2() {
       payload: 2
     })
   }
-  }, [])
+  }, [dispatch, navigate, state])
 
   const handleNextStep = () => {
     if (state.name !== ""){
@@ -29,19 +29,13 @@ function Step2() {
   }
   }
 
-  const setLevel = () =>{
+  const setLevel = level => {
     dispatch({
       type: FormActions.setLevel,
       payload: level
     })
   }
-  const handleNameChange = e => {
-    dispatch({
-      type: FormActions.setName,
-      payload: e.target.value
-    })
-  }
-  
+
   return (
     <Theme>
     <C.Container>
