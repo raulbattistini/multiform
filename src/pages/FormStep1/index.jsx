@@ -9,13 +9,13 @@ function Step1() {
   const navigate = useNavigate();
 
   const { state, dispatch } = useForm()
-
+// definicao fora do effect pra interromper o loop de re-render infinito. cada prop é recriada em cada re-render
   useEffect(() => {
     dispatch({
       type: FormActions.setCurrentStep,
       payload: 1
     })
-  }, [dispatch, navigate, state])
+  }, [])
 
   const handleNextStep = () => {
     navigate("/step2")
@@ -41,7 +41,7 @@ function Step1() {
        <C.input 
        type="text" 
        autoFocus={true}
-       value={state.name}
+       values={state.name}
        onChange={handleNameChange}  
        />
        </C.label>
